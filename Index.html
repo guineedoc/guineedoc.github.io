@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduShop GN — Documents & Outils Guinée</title>
+<meta property="og:title" content="EduShop GN — Documents & Outils Guinée"/>
+<meta property="og:description" content="Leçons préparées, rédactions, dictées, gestion des notes, comptabilité. Commandez via WhatsApp !"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --or:#FF6B00; --or2:#FF8C35;
+  --vert:#00A651; --rouge:#CE1126;
+  --wa:#25D366; --wa2:#1ebe5c;
+  --noir:#0D0D0D; --creme:#FFF8F0;
+  --gris:#F0EBE3; --muted:#6B6560;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--creme);color:#1A1A1A;overflow-x:hidden;}
+a{text-decoration:none;}
+.page{display:none;} .page.active{display:block;}
+
+/* ── HEADER ── */
+header{
+  background:var(--noir);position:sticky;top:0;z-index:200;
+  padding:0 1.2rem;display:flex;align-items:center;justify-content:space-between;
+  height:58px;border-bottom:3px solid var(--or);
+}
+.logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:#fff;line-height:1.1;}
+.logo span{color:var(--or);}
+.logo small{font-size:.58rem;color:#aaa;display:block;font-weight:400;}
+.h-right{display:flex;gap:.5rem;align-items:center;}
+.btn-wa-h{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--wa);color:#fff;padding:.4rem .9rem;border-radius:7px;
+  font-size:.8rem;font-weight:700;border:none;cursor:pointer;font-family:inherit;
+}
+.btn-adm{
+  background:rgba(255,255,255,.08);color:#bbb;
+  border:1px solid rgba(255,255,255,.18);padding:.4rem .8rem;
+  border-radius:7px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:inherit;
+}
+.btn-adm:hover{color:#fff;background:rgba(255,255,255,.15);}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(140deg,#0D0D0D 0%,#1c1408 55%,#0a0a0a 100%);
+  padding:3.2rem 1.2rem 2.8rem;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(-45deg,transparent,transparent 38px,rgba(255,107,0,.035) 38px,rgba(255,107,0,.035) 39px);}
+.flag-bar{position:absolute;top:0;left:0;right:0;height:5px;
+  background:linear-gradient(to right,var(--rouge) 33.3%,var(--or) 33.3% 66.6%,var(--vert) 66.6%);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,5vw,3rem);
+  font-weight:900;color:#fff;line-height:1.15;position:relative;margin-bottom:.7rem;}
+.hero h1 em{color:var(--or);font-style:normal;}
+.hero p{color:#999;font-size:.9rem;max-width:480px;margin:0 auto 1.5rem;position:relative;}
+.hero-wa{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:var(--wa);color:#fff;padding:.8rem 1.8rem;border-radius:30px;
+  font-weight:700;font-size:1rem;position:relative;
+  box-shadow:0 4px 22px rgba(37,211,102,.35);transition:transform .15s;
+}
+.hero-wa:hover{transform:translateY(-2px);}
+
+/* ── STATS ── */
+.statsbar{background:var(--or);display:flex;justify-content:center;flex-wrap:wrap;}
+.si{text-align:center;color:#fff;padding:.72rem 1.3rem;border-right:1px solid rgba(255,255,255,.2);}
+.si:last-child{border-right:none;}
+.si strong{display:block;font-size:1.1rem;font-weight:700;}
+.si span{font-size:.68rem;opacity:.85;}
+
+/* ── CATEGORIE PILLS ── */
+.cat-section{background:#fff;border-bottom:1px solid var(--gris);padding:1.2rem;}
+.cat-section h2{text-align:center;font-family:'Playfair Display',serif;font-size:1rem;
+  margin-bottom:1rem;color:#333;}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:.55rem;
+  max-width:900px;margin:0 auto;}
+.cpill{
+  display:flex;flex-direction:column;align-items:center;gap:.25rem;
+  padding:.65rem .4rem;border-radius:12px;border:2px solid transparent;
+  cursor:pointer;background:var(--creme);text-align:center;transition:all .15s;
+}
+.cpill:hover,.cpill.active{border-color:var(--or);background:#FFF3E8;}
+.cpill .ico{font-size:1.55rem;line-height:1;}
+.cpill .nm{font-size:.69rem;font-weight:700;color:#333;line-height:1.2;}
+.cpill .ct{font-size:.61rem;color:var(--muted);}
+
+/* ── MAIN ── */
+main{max-width:960px;margin:0 auto;padding:1.8rem 1rem;}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:1.1rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:900;}
+.sec-title span{color:var(--or);}
+.res-count{font-size:.8rem;color:var(--muted);}
+
+/* sous-niveaux */
+.sublevel{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.3rem;}
+.slvl{
+  padding:.3rem .8rem;border-radius:20px;border:1.5px solid #ddd;
+  background:#fff;font-size:.75rem;font-weight:600;cursor:pointer;
+  color:var(--muted);font-family:inherit;transition:all .15s;
+}
+.slvl:hover{border-color:var(--or);color:var(--or);}
+.slvl.active{background:var(--noir);border-color:var(--noir);color:#fff;}
+
+/* ── GRILLE ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:1.1rem;}
+.card{
+  background:#fff;border-radius:14px;overflow:hidden;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);
+  display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.12);}
+.card-top{height:90px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;position:relative;}
+.c-cat{position:absolute;top:.45rem;left:.45rem;font-size:.62rem;font-weight:700;
+  padding:.16rem .48rem;border-radius:11px;color:#fff;text-transform:uppercase;letter-spacing:.3px;}
+.c-lvl{position:absolute;top:.45rem;right:.45rem;background:rgba(0,0,0,.48);color:#fff;
+  font-size:.62rem;font-weight:600;padding:.16rem .42rem;border-radius:9px;}
+.card-body{padding:.82rem .9rem;flex:1;display:flex;flex-direction:column;}
+.card-title{font-family:'Playfair Display',serif;font-weight:700;font-size:.93rem;
+  margin-bottom:.28rem;line-height:1.3;}
+.card-desc{font-size:.77rem;color:var(--muted);flex:1;line-height:1.5;}
+.card-foot{display:flex;align-items:center;justify-content:space-between;
+  margin-top:.7rem;padding-top:.6rem;border-top:1px solid var(--gris);}
+.card-price{font-size:.97rem;font-weight:700;color:var(--or);}
+.card-price small{font-size:.64rem;font-weight:400;color:var(--muted);display:block;}
+
+/* ── BOUTON ACHETER → WhatsApp direct ── */
+.btn-acheter{
+  display:inline-flex;align-items:center;gap:.35rem;
+  background:var(--wa);color:#fff;border:none;
+  padding:.48rem .9rem;border-radius:10px;
+  font-weight:700;font-size:.8rem;cursor:pointer;
+  font-family:inherit;white-space:nowrap;transition:background .15s;
+}
+.btn-acheter:hover{background:var(--wa2);}
+
+/* ── HOW ── */
+.how{margin:2.5rem 0;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:.9rem;margin-top:1.1rem;}
+.step{background:#fff;border-radius:14px;padding:1.1rem .9rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.snum{width:30px;height:30px;border-radius:50%;background:var(--wa);color:#fff;
+  font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto .6rem;font-size:.88rem;}
+.step h3{font-weight:700;margin-bottom:.2rem;font-size:.85rem;}
+.step p{font-size:.76rem;color:var(--muted);}
+.empty-msg{text-align:center;padding:2.5rem 1rem;grid-column:1/-1;color:var(--muted);}
+.empty-msg strong{display:block;font-size:.98rem;color:#333;margin-bottom:.35rem;}
+
+/* ── FOOTER ── */
+footer{background:var(--noir);color:#666;text-align:center;
+  padding:1.8rem 1rem;font-size:.78rem;margin-top:3rem;border-top:3px solid var(--or);}
+footer strong{color:var(--or);}
+.foot-wa{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#fff;
+  padding:.5rem 1.2rem;border-radius:25px;font-weight:700;font-size:.85rem;margin:.65rem 0 .4rem;}
+
+/* ── LOGIN ── */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:1rem;background:var(--creme);}
+.lbox{background:#fff;border-radius:20px;padding:2.2rem;max-width:340px;width:100%;
+  box-shadow:0 10px 40px rgba(0,0,0,.1);text-align:center;}
+.lbox h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:.3rem;}
+.lbox p{color:var(--muted);font-size:.82rem;margin-bottom:1.2rem;}
+.l-inp{
+  width:100%;padding:.65rem .85rem;border-radius:8px;border:1.5px solid #ddd;
+  font-family:inherit;font-size:1rem;margin-bottom:.65rem;
+  text-align:center;letter-spacing:.25rem;outline:none;transition:border-color .2s;
+}
+.l-inp:focus{border-color:var(--or);}
+.btn-login{width:100%;background:var(--or);color:#fff;border:none;padding:.72rem;
+  border-radius:10px;font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;}
+.l-err{color:var(--rouge);font-size:.78rem;margin-top:.4rem;display:none;}
+.l-back{color:var(--or);font-size:.75rem;cursor:pointer;margin-top:.9rem;display:inline-block;}
+
+/* ── ADMIN ── */
+.adm-wrap{max-width:820px;margin:0 auto;padding:2rem 1rem;}
+.atop{background:var(--noir);color:#fff;padding:1.2rem 1.4rem;border-radius:14px;
+  margin-bottom:1.5rem;border-left:5px solid var(--or);}
+.atop h2{font-family:'Playfair Display',serif;font-size:1.3rem;}
+.atop p{color:#aaa;font-size:.8rem;margin-top:.22rem;}
+.atop-btns{display:flex;gap:.5rem;margin-top:.65rem;flex-wrap:wrap;}
+.atop-btns button{padding:.3rem .78rem;border-radius:6px;cursor:pointer;
+  font-family:inherit;font-size:.76rem;font-weight:600;border:none;}
+.btn-lo{background:rgba(255,107,0,.18);color:var(--or);border:1px solid var(--or)!important;}
+.btn-sh{background:rgba(255,255,255,.08);color:#ccc;border:1px solid rgba(255,255,255,.15)!important;}
+
+.fcard{background:#fff;border-radius:14px;padding:1.3rem;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);margin-bottom:1.5rem;}
+.fcard h3{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.9rem;
+  padding-bottom:.5rem;border-bottom:2px solid var(--gris);color:#333;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;}
+.frow.one{grid-template-columns:1fr;}
+.frow.three{grid-template-columns:1fr 1fr 1fr;}
+.field{display:flex;flex-direction:column;gap:.28rem;}
+.field label{font-size:.77rem;font-weight:600;color:#444;}
+.field label b{color:var(--or);}
+.f-inp,.f-sel,.f-ta{
+  padding:.6rem .82rem;border-radius:8px;border:1.5px solid #ddd;
+  font-family:inherit;font-size:.86rem;outline:none;background:#fff;
+  transition:border-color .2s;
+}
+.f-inp:focus,.f-sel:focus,.f-ta:focus{border-color:var(--or);}
+.f-ta{resize:vertical;min-height:70px;}
+.btn-pub{
+  background:var(--or);color:#fff;border:none;padding:.72rem 2rem;
+  border-radius:10px;font-family:inherit;font-weight:700;font-size:.9rem;
+  cursor:pointer;width:100%;margin-top:.3rem;transition:background .2s;
+}
+.btn-pub:hover{background:var(--or2);}
+.pub-ok{text-align:center;margin-top:.5rem;font-size:.8rem;color:var(--vert);display:none;}
+
+/* Mot de passe card */
+.pwd-card{background:#fff;border-radius:14px;padding:1.2rem 1.3rem;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);margin-bottom:1.5rem;
+  border-left:4px solid var(--or);}
+.pwd-card h3{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.8rem;color:#333;}
+.pwd-row{display:flex;gap:.7rem;align-items:flex-end;flex-wrap:wrap;}
+.pwd-row .field{flex:1;min-width:180px;}
+.btn-pwd{background:var(--noir);color:#fff;border:none;padding:.6rem 1.2rem;
+  border-radius:8px;font-family:inherit;font-weight:700;font-size:.85rem;cursor:pointer;white-space:nowrap;}
+.pwd-ok{font-size:.78rem;color:var(--vert);margin-top:.5rem;display:none;}
+.pwd-err{font-size:.78rem;color:var(--rouge);margin-top:.5rem;display:none;}
+
+/* Liste */
+.dlist h3{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.75rem;color:#333;}
+.ditem{background:#fff;border-radius:12px;padding:.8rem .9rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.65rem;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:.55rem;flex-wrap:wrap;}
+.ditem-info{flex:1;min-width:0;}
+.ditem-info strong{display:block;font-size:.88rem;font-weight:600;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ditem-info span{font-size:.73rem;color:var(--muted);}
+.ditem-price{font-weight:700;color:var(--or);font-size:.93rem;white-space:nowrap;}
+.btn-del{background:#FEE2E2;color:#DC2626;border:none;padding:.33rem .65rem;
+  border-radius:8px;font-size:.73rem;font-weight:600;cursor:pointer;font-family:inherit;}
+.btn-del:hover{background:#FECACA;}
+.no-docs{text-align:center;padding:1.5rem;color:var(--muted);font-size:.85rem;}
+
+/* SVG WA */
+.wa-svg{width:15px;height:15px;fill:#fff;flex-shrink:0;vertical-align:middle;}
+
+@media(max-width:540px){
+  .frow,.frow.three{grid-template-columns:1fr;}
+  .ditem{flex-direction:column;align-items:flex-start;}
+  .cat-grid{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    Edu<span>Shop</span> GN
+    <small>Documents &amp; Outils — Guinée</small>
+  </div>
+  <div class="h-right">
+    <a class="btn-wa-h" href="https://wa.me/224620970180" target="_blank">
+      <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <button class="btn-adm" onclick="goAdmin()">⚙️ Admin</button>
+  </div>
+</header>
+
+<!-- ======== PAGE BOUTIQUE ======== -->
+<div class="page active" id="pgShop">
+
+  <div class="hero">
+    <div class="flag-bar"></div>
+    <h1>Tous vos <em>documents</em><br>en un seul endroit</h1>
+    <p>Leçons préparées, rédactions, dictées, gestion des notes, comptabilité et plus encore. Livraison immédiate sur WhatsApp.</p>
+    <a class="hero-wa" href="https://wa.me/224620970180?text=Bonjour%2C%20je%20voudrais%20commander%20un%20document." target="_blank">
+      <svg class="wa-svg" style="width:20px;height:20px" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Commander sur WhatsApp
+    </a>
+  </div>
+
+  <div class="statsbar">
+    <div class="si"><strong id="totalCount">0</strong><span>Produits</span></div>
+    <div class="si"><strong>7</strong><span>Catégories</span></div>
+    <div class="si"><strong>Orange Money</strong><span>Paiement</span></div>
+    <div class="si" style="border-right:none"><strong>&lt; 5 min</strong><span>Livraison WhatsApp</span></div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="cat-section">
+    <h2>Que recherchez-vous ?</h2>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+
+  <main>
+    <div class="sec-head">
+      <div class="sec-title"><span id="secLabel">Tous les produits</span></div>
+      <div class="res-count" id="resCount"></div>
+    </div>
+    <div class="sublevel" id="sublevel"></div>
+    <div class="grid" id="grid"></div>
+
+    <!-- COMMENT COMMANDER -->
+    <div class="how">
+      <div class="sec-title" style="font-size:1.25rem;">Comment <span>commander ?</span></div>
+      <div class="steps">
+        <div class="step"><div class="snum">1</div><h3>Choisissez</h3><p>Parcourez les produits et cliquez sur Acheter.</p></div>
+        <div class="step"><div class="snum">2</div><h3>WhatsApp s'ouvre</h3><p>Le message est déjà rédigé avec le nom et le prix.</p></div>
+        <div class="step"><div class="snum">3</div><h3>Payez</h3><p>Envoyez le montant via Orange Money au +224 620 97 01 80.</p></div>
+        <div class="step"><div class="snum">4</div><h3>Recevez</h3><p>Votre document est livré sur WhatsApp en moins de 5 min.</p></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <strong>EduShop GN</strong> — Documents &amp; Outils professionnels — Guinée
+    <br>
+    <a class="foot-wa" href="https://wa.me/224620970180" target="_blank">
+      <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      +224 620 97 01 80
+    </a>
+    <br>&copy; 2025 Tous droits réservés.
+  </footer>
+</div>
+
+<!-- ======== PAGE LOGIN ======== -->
+<div class="page" id="pgLogin">
+  <div class="login-wrap">
+    <div class="lbox">
+      <div style="font-size:2.2rem;margin-bottom:.7rem">🔒</div>
+      <h2>Espace Admin</h2>
+      <p>Entrez votre code pour gérer vos produits</p>
+      <input class="l-inp" type="password" id="pwdInput" placeholder="••••" maxlength="20"
+        onkeydown="if(event.key==='Enter')doLogin()"/>
+      <button class="btn-login" onclick="doLogin()">Se connecter</button>
+      <p class="l-err" id="lErr">Code incorrect. Réessayez.</p>
+      <span class="l-back" onclick="showPage('pgShop')">← Retour à la boutique</span>
+    </div>
+  </div>
+</div>
+
+<!-- ======== PAGE ADMIN ======== -->
+<div class="page" id="pgAdmin">
+  <div class="adm-wrap">
+
+    <div class="atop">
+      <h2>⚙️ Panneau Admin — EduShop GN</h2>
+      <p>Ajoutez et gérez vos produits. Sauvegarde automatique.</p>
+      <div class="atop-btns">
+        <button class="btn-lo" onclick="logout()">Déconnexion</button>
+        <button class="btn-sh" onclick="showPage('pgShop');renderShop()">👁 Voir la boutique</button>
+      </div>
+    </div>
+
+    <!-- CHANGER MOT DE PASSE -->
+    <div class="pwd-card">
+      <h3>🔑 Changer mon code d'accès</h3>
+      <div class="pwd-row">
+        <div class="field">
+          <label>Code actuel</label>
+          <input class="f-inp" type="password" id="pwdOld" placeholder="Code actuel" maxlength="20"/>
+        </div>
+        <div class="field">
+          <label>Nouveau code</label>
+          <input class="f-inp" type="password" id="pwdNew" placeholder="Nouveau code" maxlength="20"/>
+        </div>
+        <div class="field">
+          <label>Confirmer</label>
+          <input class="f-inp" type="password" id="pwdConf" placeholder="Confirmer" maxlength="20"/>
+        </div>
+        <button class="btn-pwd" onclick="changePwd()">Changer</button>
+      </div>
+      <p class="pwd-ok" id="pwdOk">✅ Code modifié avec succès !</p>
+      <p class="pwd-err" id="pwdErr"></p>
+    </div>
+
+    <!-- FORMULAIRE AJOUT -->
+    <div class="fcard">
+      <h3>➕ Ajouter un nouveau produit</h3>
+
+      <div class="frow one">
+        <div class="field">
+          <label>Titre du produit <b>*</b></label>
+          <input class="f-inp" id="fTitle" placeholder="Ex : Leçon préparée — La phrase simple — 7e"/>
+        </div>
+      </div>
+
+      <div class="frow">
+        <div class="field">
+          <label>Catégorie <b>*</b></label>
+          <select class="f-sel" id="fCat" onchange="updateNiveaux()">
+            <option value="">-- Choisir --</option>
+            <option value="lecons">Leçons préparées</option>
+            <option value="redaction">Rédaction traitée</option>
+            <option value="dictee">Dictée</option>
+            <option value="questions">Questions traitées</option>
+            <option value="notes">Gestion des notes</option>
+            <option value="compta">Gestion comptable</option>
+            <option value="autres">Autres</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Niveau / Type <b>*</b></label>
+          <select class="f-sel" id="fNiveau">
+            <option value="">-- Choisir la catégorie d'abord --</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="frow three">
+        <div class="field">
+          <label>Prix en GNF <b>*</b></label>
+          <input class="f-inp" type="number" id="fPrice" placeholder="Ex : 15000" min="0"/>
+        </div>
+        <div class="field">
+          <label>Nombre de pages</label>
+          <input class="f-inp" type="number" id="fPages" placeholder="Ex : 10" min="1"/>
+        </div>
+        <div class="field">
+          <label>Matière (optionnel)</label>
+          <input class="f-inp" id="fMatiere" placeholder="Ex : Français, Maths"/>
+        </div>
+      </div>
+
+      <div class="frow one">
+        <div class="field">
+          <label>Description <b>*</b></label>
+          <textarea class="f-ta" id="fDesc" placeholder="Décrivez le contenu de votre produit..."></textarea>
+        </div>
+      </div>
+
+      <button class="btn-pub" onclick="addProd()">➕ Publier dans la boutique</button>
+      <p class="pub-ok" id="pubOk">✅ Produit publié avec succès !</p>
+    </div>
+
+    <!-- LISTE -->
+    <div class="dlist">
+      <h3>📚 Mes produits (<span id="docCount">0</span>)</h3>
+      <div id="adminList"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════
+   CONFIGURATION
+═══════════════════════════════════════ */
+var WA = "224620970180";
+var STORE_KEY  = "edushop_prods";
+var PWD_KEY    = "edushop_pwd";
+
+/* Mot de passe par défaut = 0000 */
+function getPwd(){ return localStorage.getItem(PWD_KEY) || "0000"; }
+
+/* ═══════════════════════════════════════
+   DONNÉES CATEGORIES
+═══════════════════════════════════════ */
+var CATS = [
+  {id:"tous",     label:"Tous",              ico:"🗂️",  color:"#FF6B00", bg:"#FFF3E8"},
+  {id:"lecons",   label:"Leçons préparées",  ico:"📖",  color:"#1565C0", bg:"#E3F2FD"},
+  {id:"redaction",label:"Rédaction",          ico:"📝",  color:"#BF360C", bg:"#FBE9E7"},
+  {id:"dictee",   label:"Dictée",             ico:"✍️",  color:"#6A1B9A", bg:"#F3E5F5"},
+  {id:"questions",label:"Questions traitées", ico:"❓",  color:"#2E7D32", bg:"#E8F5E9"},
+  {id:"notes",    label:"Gestion des notes",  ico:"📊",  color:"#E65100", bg:"#FFF3E0"},
+  {id:"compta",   label:"Gestion comptable",  ico:"💰",  color:"#004D40", bg:"#E0F2F1"},
+  {id:"autres",   label:"Autres",             ico:"📦",  color:"#37474F", bg:"#ECEFF1"}
+];
+
+var NIVEAUX = {
+  lecons:    ["7e","8e","9e","10e","Tous niveaux"],
+  redaction: ["7e","8e","9e","10e","Tous niveaux"],
+  dictee:    ["7e","8e","9e","10e","Tous niveaux"],
+  questions: ["7e","8e","9e","10e","Tous niveaux"],
+  notes:     ["Maternelle","Primaire","Collège","Lycée","Tous cycles"],
+  compta:    ["Petite entreprise","Association","École","Général"],
+  autres:    ["Général"]
+};
+
+var WA_SVG = '<svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+function showPage(id){
+  document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active");});
+  document.getElementById(id).classList.add("active");
+  window.scrollTo(0,0);
+}
+
+function goAdmin(){
+  showPage("pgLogin");
+  document.getElementById("pwdInput").value="";
+  document.getElementById("lErr").style.display="none";
+}
+
+function doLogin(){
+  var v = document.getElementById("pwdInput").value;
+  if(v === getPwd()){
+    showPage("pgAdmin");
+    renderAdminList();
+  } else {
+    document.getElementById("lErr").style.display="block";
+  }
+}
+
+function logout(){ showPage("pgShop"); }
+
+/* ═══════════════════════════════════════
+   CHANGER MOT DE PASSE
+═══════════════════════════════════════ */
+function changePwd(){
+  var old  = document.getElementById("pwdOld").value;
+  var nw   = document.getElementById("pwdNew").value.trim();
+  var conf = document.getElementById("pwdConf").value.trim();
+  var ok   = document.getElementById("pwdOk");
+  var err  = document.getElementById("pwdErr");
+  ok.style.display="none"; err.style.display="none";
+
+  if(old !== getPwd()){
+    err.textContent="Le code actuel est incorrect."; err.style.display="block"; return;
+  }
+  if(!nw){
+    err.textContent="Le nouveau code ne peut pas être vide."; err.style.display="block"; return;
+  }
+  if(nw !== conf){
+    err.textContent="Les deux nouveaux codes ne correspondent pas."; err.style.display="block"; return;
+  }
+  localStorage.setItem(PWD_KEY, nw);
+  ok.style.display="block";
+  document.getElementById("pwdOld").value="";
+  document.getElementById("pwdNew").value="";
+  document.getElementById("pwdConf").value="";
+  setTimeout(function(){ok.style.display="none";}, 3000);
+}
+
+/* ═══════════════════════════════════════
+   STORAGE PRODUITS
+═══════════════════════════════════════ */
+function loadProds(){
+  try{return JSON.parse(localStorage.getItem(STORE_KEY)||"[]");}catch(e){return [];}
+}
+function saveProds(d){
+  try{localStorage.setItem(STORE_KEY,JSON.stringify(d));}catch(e){}
+}
+
+/* ═══════════════════════════════════════
+   LIEN WHATSAPP PAR PRODUIT
+═══════════════════════════════════════ */
+function makeWA(prod){
+  var cat = CATS.find(function(c){return c.id===prod.cat;});
+  var msg = "Bonjour ! Je souhaite commander :\n\n"
+    + "📌 *" + prod.title + "*\n"
+    + "🗂️ Catégorie : " + (cat ? cat.label : prod.cat) + "\n"
+    + (prod.niveau ? "📚 Niveau : " + prod.niveau + "\n" : "")
+    + (prod.matiere ? "📖 Matière : " + prod.matiere + "\n" : "")
+    + "💰 Prix : " + Number(prod.price).toLocaleString("fr") + " GNF\n\n"
+    + "Merci de confirmer la disponibilité.";
+  return "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
+}
+
+/* ═══════════════════════════════════════
+   BOUTIQUE
+═══════════════════════════════════════ */
+var curCat = "tous";
+var curLvl = "tous";
+
+function getCat(id){ return CATS.find(function(c){return c.id===id;}); }
+
+function renderCats(){
+  var prods = loadProds();
+  var html = CATS.map(function(c){
+    var n = c.id==="tous" ? prods.length : prods.filter(function(p){return p.cat===c.id;}).length;
+    return '<div class="cpill'+(curCat===c.id?" active":"")+'" onclick="selCat(\''+c.id+'\')">'
+      +'<span class="ico">'+c.ico+'</span>'
+      +'<span class="nm">'+c.label+'</span>'
+      +'<span class="ct">'+n+' produit'+(n>1?"s":"")+'</span>'
+      +'</div>';
+  }).join("");
+  document.getElementById("catGrid").innerHTML = html;
+}
+
+function selCat(id){
+  curCat=id; curLvl="tous";
+  renderCats(); renderSublevel(); renderShop();
+}
+
+function renderSublevel(){
+  var bar = document.getElementById("sublevel");
+  if(curCat==="tous"||!NIVEAUX[curCat]){bar.style.display="none";return;}
+  bar.style.display="flex";
+  var html = '<button class="slvl'+(curLvl==="tous"?" active":"")+'" onclick="selLvl(\'tous\')">Tous</button>';
+  NIVEAUX[curCat].forEach(function(n){
+    html += '<button class="slvl'+(curLvl===n?" active":"")+'" onclick="selLvl(\''+n+'\')">'+n+'</button>';
+  });
+  bar.innerHTML = html;
+}
+
+function selLvl(lv){
+  curLvl=lv; renderSublevel(); renderShop();
+}
+
+function renderShop(){
+  var prods = loadProds();
+  document.getElementById("totalCount").textContent = prods.length;
+  var list = curCat==="tous" ? prods : prods.filter(function(p){return p.cat===curCat;});
+  if(curLvl!=="tous") list = list.filter(function(p){return p.niveau===curLvl;});
+
+  var cat = getCat(curCat)||getCat("tous");
+  document.getElementById("secLabel").textContent = cat.label;
+  document.getElementById("resCount").textContent = list.length+" produit"+(list.length>1?"s":"");
+
+  if(list.length===0){
+    document.getElementById("grid").innerHTML = '<div class="empty-msg"><strong>Aucun produit ici pour l\'instant</strong>Contactez-nous sur WhatsApp pour toute demande.</div>';
+    return;
+  }
+
+  document.getElementById("grid").innerHTML = list.map(function(prod){
+    var c = getCat(prod.cat)||{label:prod.cat,color:"#666",bg:"#eee",ico:"📄"};
+    var pages = prod.pages ? prod.pages+" page"+(prod.pages>1?"s":"") : "";
+    var extra = [prod.matiere, pages].filter(Boolean).join(" · ");
+    return '<div class="card" onmouseenter="this.style.transform=\'translateY(-4px)\';this.style.boxShadow=\'0 10px 28px rgba(0,0,0,.12)\'" onmouseleave="this.style.transform=\'none\';this.style.boxShadow=\'0 2px 10px rgba(0,0,0,.07)\'">'
+      +'<div class="card-top" style="background:'+c.bg+'"><span style="font-size:2.4rem">'+c.ico+'</span>'
+      +'<span class="c-cat" style="background:'+c.color+'">'+c.label+'</span>'
+      +(prod.niveau?'<span class="c-lvl">'+prod.niveau+'</span>':'')
+      +'</div>'
+      +'<div class="card-body">'
+      +'<div class="card-title">'+prod.title+'</div>'
+      +'<div class="card-desc">'+prod.desc+'</div>'
+      +'<div class="card-foot">'
+      +'<div class="card-price">'+Number(prod.price).toLocaleString("fr")+' GNF'
+      +(extra?'<small>'+extra+'</small>':'')+'</div>'
+      +'<a class="btn-acheter" href="'+makeWA(prod)+'" target="_blank">'+WA_SVG+' Acheter</a>'
+      +'</div></div></div>';
+  }).join("");
+}
+
+/* ═══════════════════════════════════════
+   ADMIN
+═══════════════════════════════════════ */
+function updateNiveaux(){
+  var cat = document.getElementById("fCat").value;
+  var sel = document.getElementById("fNiveau");
+  var opts = NIVEAUX[cat]||["Général"];
+  sel.innerHTML = '<option value="">-- Choisir --</option>'
+    + opts.map(function(n){return '<option value="'+n+'">'+n+'</option>';}).join("");
+}
+
+function addProd(){
+  var title   = document.getElementById("fTitle").value.trim();
+  var cat     = document.getElementById("fCat").value;
+  var niveau  = document.getElementById("fNiveau").value;
+  var price   = parseInt(document.getElementById("fPrice").value);
+  var pages   = parseInt(document.getElementById("fPages").value)||0;
+  var desc    = document.getElementById("fDesc").value.trim();
+  var matiere = document.getElementById("fMatiere").value.trim();
+
+  if(!title||!cat||!niveau||!price||!desc){
+    alert("Remplissez tous les champs obligatoires (*)."); return;
+  }
+  var prods = loadProds();
+  var newId = prods.length>0 ? Math.max.apply(null,prods.map(function(p){return p.id;}))+1 : 1;
+  prods.push({id:newId,cat:cat,niveau:niveau,title:title,desc:desc,pages:pages,price:price,matiere:matiere});
+  saveProds(prods);
+
+  ["fTitle","fPrice","fPages","fDesc","fMatiere"].forEach(function(id){document.getElementById(id).value="";});
+  document.getElementById("fCat").value="";
+  document.getElementById("fNiveau").innerHTML='<option value="">-- Choisir la catégorie d\'abord --</option>';
+
+  var ok=document.getElementById("pubOk");
+  ok.style.display="block";
+  setTimeout(function(){ok.style.display="none";},3000);
+  renderAdminList(); renderCats();
+}
+
+function renderAdminList(){
+  var prods = loadProds();
+  document.getElementById("docCount").textContent = prods.length;
+  var el = document.getElementById("adminList");
+  if(prods.length===0){
+    el.innerHTML='<div class="no-docs">Aucun produit publié. Ajoutez votre premier produit ci-dessus.</div>';
+    return;
+  }
+  el.innerHTML = prods.map(function(p){
+    var c = getCat(p.cat)||{label:p.cat,color:"#666"};
+    var meta = [p.niveau,p.matiere].filter(Boolean).join(" / ");
+    return '<div class="ditem">'
+      +'<div class="ditem-info">'
+      +'<strong>'+p.title+'</strong>'
+      +'<span><span style="background:'+c.color+';color:#fff;font-size:.6rem;font-weight:700;padding:.1rem .36rem;border-radius:7px;margin-right:.3rem;">'+c.label+'</span>'+meta+'</span>'
+      +'</div>'
+      +'<div class="ditem-price">'+Number(p.price).toLocaleString("fr")+' GNF</div>'
+      +'<button class="btn-del" onclick="delProd('+p.id+')">🗑 Supprimer</button>'
+      +'</div>';
+  }).join("");
+}
+
+function delProd(id){
+  if(!confirm("Supprimer ce produit de la boutique ?")) return;
+  saveProds(loadProds().filter(function(p){return p.id!==id;}));
+  renderAdminList(); renderCats(); renderShop();
+}
+
+/* ═══════════════════════════════════════
+   INIT
+═══════════════════════════════════════ */
+renderCats();
+renderSublevel();
+renderShop();
+</script>
+</body>
+</html>
